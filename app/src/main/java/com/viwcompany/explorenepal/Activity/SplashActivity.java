@@ -44,6 +44,9 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         new Handler().postDelayed(this::checkUser, 3000);
 
     }
@@ -51,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkUser() {
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
             if (firebaseUser == null) {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             } else {
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                 ref.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {

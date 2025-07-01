@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Explore Nepal</string>
+    <string name="agree_the_privacy_policy">Agree the <b>privacy policy</b></string>
+
+
+    <string name="new_user_signup">New User? <b>SignUp</b></string>
 </resources>
