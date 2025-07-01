@@ -1,9 +1,11 @@
 package com.viwcompany.explorenepal.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -36,6 +38,11 @@ public class SplashActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
 
+        getWindow().setFlags(
+                android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
+
         setContentView(binding.getRoot());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -43,6 +50,23 @@ public class SplashActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+
+        VideoView videoView = findViewById(R.id.videoView);
+
+
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.hack);
+        videoView.setVideoURI(videoUri);
+        videoView.setOnCompletionListener(mp -> {
+            // Move to next activity after video ends
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            finish();
+        });
+
+        videoView.start();
+
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();

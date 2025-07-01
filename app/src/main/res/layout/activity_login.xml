@@ -14,20 +14,32 @@
         android:layout_width="match_parent"
         android:layout_height="350dp">
 
+
+        <ImageView
+            android:id="@+id/logo111"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/logo" />
+
         <TextView
+            android:id="@+id/text11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="141dp"
+            android:layout_marginTop="201dp"
             android:fontFamily="@font/plus"
             android:gravity="center"
-            android:textStyle="bold"
             android:text="  Already have an Account?"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
 

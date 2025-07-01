@@ -39,6 +39,13 @@ public class DashboardUserActivity extends AppCompatActivity {
             }
         });
 
+        binding.userAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DashboardUserActivity.this , ProfileActivity.class));
+            }
+        });
+
 
     }
 }
