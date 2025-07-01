@@ -27,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     };
 
 
+
+
     private CircleImageView userAvatar;
     private SharedPreferences sharedPreferences;
 
