@@ -12,6 +12,7 @@ firebaseDatabase = "21.0.0"
 firebaseAuth = "23.2.1"
 library = "1.6.2"
 circleimageview = "3.1.0"
+recyclerview = "1.4.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -25,6 +26,7 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database",
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 library = { module = "com.github.f0ris.sweetalert:library", version.ref = "library" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
