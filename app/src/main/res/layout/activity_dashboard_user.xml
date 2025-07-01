@@ -106,10 +106,49 @@
                     android:layout_height="250dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/img2" />
-
-
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:cardCornerRadius="18dp"
+        android:layout_below="@id/card1"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@color/background">
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Pashupatinath"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_alignParentTop="true"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleText"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img3" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 
 
