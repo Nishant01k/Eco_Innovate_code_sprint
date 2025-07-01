@@ -13,92 +13,79 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
+
 import com.viwcompany.explorenepal.R;
 import com.viwcompany.explorenepal.databinding.ActivityProfileBinding;
-
-import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private ActivityProfileBinding binding;
-
-    private SharedPreferences sharedPreferences;
     private FirebaseAuth firebaseAuth;
+    private SharedPreferences sharedPreferences;
 
-    private int defaultAvatar = R.drawable.avatar2;
+    private static final int DEFAULT_AVATAR = R.drawable.avatar2;
+    private static final String TAG = "ProfileActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
+
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-
         firebaseAuth = FirebaseAuth.getInstance();
-        loadUserInfo();
-
         sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        int savedAvatar = sharedPreferences.getInt("avatar", defaultAvatar);
+
+        int savedAvatar = sharedPreferences.getInt("avatar", DEFAULT_AVATAR);
         binding.profileImage.setImageResource(savedAvatar);
 
+        loadUserInfo();
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
+        binding.backBtn.setOnClickListener(v -> onBackPressed());
+
+        binding.logoutButton.setOnClickListener(v -> {
+            firebaseAuth.signOut();
+            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+            finish();
         });
-
-
-        binding.logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-            }
-        });
-
-
     }
 
-
-
     private void loadUserInfo() {
+        String uid = firebaseAuth.getUid();
+
+        if (uid == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.child(firebaseAuth.getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String email = "" + snapshot.child("email").getValue();
-                        String name = "" + snapshot.child("name").getValue();;
+        reference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String email = snapshot.child("email").getValue(String.class);
+                String name = snapshot.child("name").getValue(String.class);
 
-                        binding.userEmail.setText(email);
-                        binding.userName.setText(name);
+                if (email != null) binding.userEmail.setText(email);
+                if (name != null) binding.userName.setText(name);
+            }
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-
-                    }
-                });
-
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "Failed to load user info: " + error.getMessage());
+                Toast.makeText(ProfileActivity.this, "Failed to load profile", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
