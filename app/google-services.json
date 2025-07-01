@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "804501400114",
+    "project_id": "explore-nepal-7f5a4",
+    "storage_bucket": "explore-nepal-7f5a4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804501400114:android:9445566177e261ccad6a2b",
+        "android_client_info": {
+          "package_name": "com.viwcompany.explorenepal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQXZB_yCUaQcloWNVnoeQJFJIwEGFVvmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
