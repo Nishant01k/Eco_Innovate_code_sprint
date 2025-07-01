@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://sites.google.com/view/privacy-policy-for-earnify/home?authuser=8"; // Replace with your desired URL
+                String url = "https://sites.google.com/view/explorenepal12/home"; // Replace with your desired URL
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(android.net.Uri.parse(url));
                 startActivity(intent);
