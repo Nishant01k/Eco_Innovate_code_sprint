@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ExploreNepal"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.HomeActivity"
+            android:name=".Activity.TempleActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.ForgotPasswordActivity"
