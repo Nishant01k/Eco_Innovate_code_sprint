@@ -41,6 +41,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/avatar2"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"/>
+
             <!-- Full Name -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
