@@ -61,13 +61,13 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String userType = snapshot.child("userType").getValue(String.class);
-                        Intent intent;
+
                         if ("user".equals(userType)) {
-                            intent = new Intent(SplashActivity.this, DashboardUserActivity.class);
+                            startActivity(new Intent(SplashActivity.this, DashboardUserActivity.class));
                         } else if ("admin".equals(userType)) {
-                            intent = new Intent(SplashActivity.this, DashboardAdminActivity.class);
+                            startActivity(new Intent(SplashActivity.this, DashboardAdminActivity.class));
                         } else {
-                            intent = new Intent(SplashActivity.this, MainActivity.class);
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         }
                     }
                     @Override

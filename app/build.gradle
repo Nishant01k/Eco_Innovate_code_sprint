@@ -46,4 +46,7 @@ dependencies {
     androidTestImplementation libs.espresso.core
     implementation libs.library
     implementation libs.circleimageview
+
+
+    implementation libs.recyclerview
 }
